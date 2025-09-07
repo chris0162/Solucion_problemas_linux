@@ -4,7 +4,7 @@ Soluciones aplicadas para problemas linux
 
 Al ejecutar apt update o apt install, aparece un error similar a:
 
-Failed to fetch http://security.ubuntu.com/ubuntu/pool/main/l/linux-firmware/linux-firmware_20240318... 500 Internal Server Error [IP: 185.125.190.83 80]
+Failed to fetch http://security.ubuntu.com/ubuntu/pool/main/l/linux-firmware/linux-firmware_20240318... 500 Internal Server Error [IP: 185.125.125.33 80]
 
 Este error ocurre porque el servidor/mirror de Ubuntu Security (security.ubuntu.com) 
 devolvió un código HTTP 500 (Internal Server Error).
