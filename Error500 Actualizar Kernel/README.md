@@ -1,4 +1,4 @@
-# Solucion_problemas_linux
+# Solucion Error 500 Actualizacion del Kernel
 Soluciones aplicadas para problemas linux
 
 
@@ -56,7 +56,45 @@ Si necesitas un paquete en particular y el mirror sigue fallando, podés bajarlo
 Se adjunta el scrip para correrlo de forma automatica.
 
 
+## Instrucciones para correr archivo
 
+**1. Crea el archivo:**  
+
+nano fix-apt.sh
+
+(pega el contenido anterior)
+
+*#!/bin/bash
+** Script para limpiar y actualizar apt cuando hay errores 500 en security.ubuntu.com**
+
+echo "=== Limpiando caché de apt ==="
+sudo apt clean
+sudo rm -rf /var/lib/apt/lists/*
+
+echo "=== Forzando IPv4 y actualizando listas ==="
+sudo apt -o Acquire::ForceIPv4=true -o Acquire::Retries=5 update
+
+echo "=== Corrigiendo fuentes (https en lugar de http) ==="
+sudo sed -i 's|http://security.ubuntu.com|https://security.ubuntu.com|g' /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null
+
+echo "=== Actualizando de nuevo ==="
+sudo apt -o Acquire::ForceIPv4=true -o Acquire::Retries=5 update
+
+echo "=== Reinstalando firmware si es necesario ==="
+sudo apt install --reinstall -y linux-firmware
+
+echo "=== Listo 🚀 ==="
+*  
+
+
+
+**2. Dale permisos de ejecución:** 
+
+chmod +x fix-apt.sh
+
+**3. Ejecútalo cuando lo necesites:** 
+
+./fix-apt.sh
 
 
 
